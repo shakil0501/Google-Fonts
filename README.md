@@ -32,9 +32,13 @@ Open http://127.0.0.1:4173. Run the build again after source changes. Serve the 
 
 ## GitHub Pages
 
+The repository includes a built `gh-pages` branch as a publishing fallback. Pages is currently configured to publish that branch. This is a static snapshot; changes on `main` do not rebuild it while Actions is unavailable.
+
 The `Publish Font Explorer` workflow tests and builds the site, then publishes only `dist/`. It runs on pushes to `main`, manual dispatch, and successful catalog updates.
 
 In repository **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source. The website address is https://shakil0501.github.io/Google-Fonts/. Deployment status is available under the Actions tab.
+
+At initial setup, GitHub reported “Actions has been disabled for this user.” Account-level Actions access must be restored before scheduled updates, automated browser checks, or workflow deployment can run. Repository-level Actions permissions are already enabled. After access is restored, switch the Pages source to GitHub Actions and run `Publish Font Explorer` and `Update font catalog` from the Actions tab.
 
 ## Automatic catalog updates
 
