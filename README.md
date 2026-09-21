@@ -1,172 +1,95 @@
-# Google-Fonts
+﻿# Google-Fonts · Font Explorer
 
-Maintained by **Shakil Hossain**.
+A searchable Google Fonts catalog and live typography playground, maintained by **Shakil Hossain**.
 
+**Website:** https://shakil0501.github.io/Google-Fonts/
 
-This repository contains a structured JSON index of Google Fonts, organized by font category and script subset.
+## Explore
 
-The dataset is split into top-level manifests and nested folders so it is easy to query either the full catalog or a narrower slice of it.
+- Search by family name and combine category and language/script filters.
+- Switch to Bengali with one click and preview Bengali sample text.
+- Type your own sample and change its size, weight, and italic style.
+- Preview the closest style actually available in each family; no synthetic bold or italic.
+- Save favorites in your browser, with a Saved collection for quick access.
+- Copy an @import and CSS declaration for the exact displayed font style.
+- Light and dark themes, keyboard-accessible controls, responsive cards, and paginated results.
+- Fonts load only as cards approach the viewport; unavailable previews are clearly labeled.
 
-## What's included
+Favorites and theme preferences stay in local browser storage. Live font previews connect to fonts.googleapis.com and fonts.gstatic.com. Search and filters use the bundled catalog.
 
-- `fonts.json`: the full list of font family names in the dataset.
-- `categories.json`: the supported font categories.
-- `subsets.json`: the supported script and language subsets.
-- `updated.json`: timestamp of the last time the manifests were generated.
-- `categories/`: category-specific indexes (`display`, `handwriting`, `monospace`, `sans-serif`, `serif`).
-- `subsets/`: subset-specific indexes (`latin`, `arabic`, `cyrillic`, `devanagari`, etc.).
-- `fonts/`: per-font metadata files — one JSON file per font family.
+## Run locally
 
-## Repository structure
-
-```text
-.
-├── fonts.json                          → all font families
-├── categories.json                     → all categories
-├── subsets.json                        → all subsets
-├── fonts/
-│   └── inter.json                      → per-font metadata
-│   └── ...                             → 1,900+ more
-├── categories/
-│   ├── display/
-│   │   ├── fonts.json                  → all display fonts
-│   │   ├── subsets.json                → all subsets in display
-│   │   ├── latin/
-│   │   │   └── fonts.json              → display + latin
-│   │   └── ...                         → 40+ more subsets
-│   ├── handwriting/
-│   ├── monospace/
-│   ├── sans-serif/
-│   └── serif/
-└── subsets/
-    ├── latin/
-    │   ├── fonts.json                  → all fonts with Latin script
-    │   └── categories.json             → which categories include Latin
-    └── ...                             → 180+ more subsets
-```
-
-## Data format
-
-### Top-level manifests
-
-```json
-// fonts.json
-{
-  "fonts": ["ABeeZee", "ADLaM Display", "Arimo"]
-}
-```
-
-```json
-// categories.json
-{
-  "categories": ["display", "handwriting", "monospace", "sans-serif", "serif"]
-}
-```
-
-```json
-// subsets.json
-{
-  "subsets": ["latin", "latin-ext", "cyrillic", "greek", "japanese"]
-}
-```
-
-```json
-// updated.json
-{
-  "last_updated": "2026-04-10T17:20:04Z"
-}
-```
-
-### Category index
-
-```text
-categories/<category>/
-├── fonts.json        # all fonts in this category
-├── subsets.json      # all subsets used in this category
-└── <subset>/
-    └── fonts.json    # fonts in this category + subset
-```
-
-### Subset index
-
-```text
-subsets/<subset>/
-├── fonts.json        # all fonts in this subset
-├── categories.json   # categories that appear in this subset
-└── <category>/
-    └── fonts.json    # fonts in this subset + category
-```
-
-### Per-font metadata
-
-```json
-// fonts/abeezee.json
-{
-  "family": "ABeeZee",
-  "slug": "abeezee",
-  "categories": ["sans-serif"],
-  "subsets": ["latin", "latin-ext"],
-  "variants": ["regular", "italic"],
-  "version": "v23",
-  "lastModified": "2025-09-08"
-}
-```
-
-## Generating the manifests
+Requires Node.js 22 or newer.
 
 ```bash
-./generate-font-manifests.sh              # uses webfonts.json
-./generate-font-manifests.sh custom.json  # uses your own file
+npm ci
+npm test
+npm run build
+npm run dev
 ```
 
-The script cleans previous output, generates all index files, and writes a fresh `updated.json` timestamp.
+Open http://127.0.0.1:4173. Run the build again after source changes. Serve the site over HTTP rather than opening index.html directly.
 
-## Common use cases
+## GitHub Pages
 
-You can use these files to:
+The `Publish Font Explorer` workflow tests and builds the site, then publishes only `dist/`. It runs on pushes to `main`, manual dispatch, and successful catalog updates.
 
-- **Build font pickers & filters** — populate dropdowns, checkboxes, or searchable UIs with category and subset filters
-- **Generate subset-aware font previews** — show only the fonts that support a given script (e.g. Arabic, Bengali, Devanagari, Cyrillic)
-- **Power search or autocomplete** — load a lightweight JSON index instead of hitting an API or scraping
-- **Generate dynamic `@import` or `<link>` tags** — fetch the font family name from JSON and construct Google Fonts embed URLs on the fly
-- **Keep a local or CDN-cached snapshot** — avoid rate limits by using the structured JSON via jsDelivr instead of querying Google Fonts directly
-- **Feed into design systems & component libraries** — validate typography tokens against the real Google Fonts catalog
-- **Drive static site generation** — pre-render font preview cards, style guides, or comparison tables at build time
+In repository **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source. The website address is https://shakil0501.github.io/Google-Fonts/. Deployment status is available under the Actions tab.
 
-## CDN Usage
+## Automatic catalog updates
 
-All JSON files are available via [jsDelivr](https://www.jsdelivr.com/) CDN:
-
-```
-https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts/
-```
-
-### Examples
+The `Update font catalog` workflow runs every Monday at 03:17 UTC and can also be started manually from Actions.
 
 ```bash
-# Full font list
-curl https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts/fonts.json
-
-# Full font list (latest tag)
-curl https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts@latest/fonts.json
-
-# Fonts in a specific subset and category
-curl https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts/subsets/latin/display/fonts.json
-
-# Fonts in a specific category and subset
-curl https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts/categories/sans-serif/latin/fonts.json
+npm run update
 ```
 
-### Versioned URLs
+Without a key, the updater syncs metadata from Hasin Hayder's upstream index. Its freshness depends on that index. If metadata hasn't changed, it does not create a commit or change the catalog timestamp.
 
-You can pin to a specific tag or commit for caching:
+For updates directly from Google's Developer API, add a repository Actions secret named `GOOGLE_FONTS_API_KEY` containing a key with the Web Fonts Developer API enabled. Locally, provide the same environment variable. Never put the key in source files. The browser does not need this key.
 
+Updates validate all metadata and generate replacement indexes before changing tracked data. Duplicate families, unsafe path segments, empty variants, and a catalog shrinking by more than 20% are rejected. Updated JSON is committed by the workflow only after tests and a build succeed.
+
+## JSON data
+
+Existing consumer paths are preserved:
+
+| Path | Contents |
+| --- | --- |
+| `fonts.json` | Font family names |
+| `fonts/<slug>.json` | Family metadata, variants, scripts, and category |
+| `categories.json` | Available categories |
+| `categories/<category>/fonts.json` | Fonts in one category |
+| `categories/<category>/<subset>/fonts.json` | Category and script intersection |
+| `subsets.json` | Available scripts |
+| `subsets/<subset>/fonts.json` | Fonts supporting one script |
+| `subsets/<subset>/<category>/fonts.json` | Script and category intersection |
+| `updated.json` | Source catalog timestamp |
+
+Example CDN URL (pin a commit instead of `main` when reproducibility matters):
+
+```text
+https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts@main/fonts.json
+https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts@main/subsets/bengali/fonts.json
 ```
-https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts@v1.2.0/fonts.json
+
+## Development and checks
+
+- `site/`: dependency-free browser application and styles.
+- `scripts/`: validated catalog generation, update, build, and local server.
+- `tests/`: Node unit and dataset integrity tests.
+- `e2e/`: browser tests for filters, favorites, previews, CSS, and responsive layouts.
+
+```bash
+npm run test:e2e
 ```
 
-## Notes
+Browser tests use installed Google Chrome by default. CI installs Chrome using Playwright. Font network requests are mocked in interaction tests so results do not depend on Google Fonts availability; live font loading should also be checked when network access is available.
 
-- The repository is data-only.
-- Folder and file names are lowercase and hyphenated where needed.
-- Category and subset indexes are intended to stay consistent with the top-level manifests.
+## License and credits
+
+Original catalog: **Hasin Hayder**, Copyright © 2026, MIT (see [LICENSE](LICENSE)).
+
+Font Explorer and enhancements: **Shakil Hossain**, Copyright © 2026, MIT.
+
+This is an independent project, not an official Google product.

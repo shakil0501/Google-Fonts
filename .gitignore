@@ -2,3 +2,10 @@ webfont*.json
 *.sh
 *.txt
 .qwen
+node_modules/
+dist/
+.env
+.env.*
+artifacts/
+test-results/
+playwright-report/
