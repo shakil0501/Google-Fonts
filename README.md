@@ -1,4 +1,8 @@
-# Google Fonts Index
+# Google-Fonts
+
+Maintained by **Shakil Hossain**.
+
+Based on [Google Fonts Index by Hasin Hayder](https://github.com/hasinhayder/google-fonts). The original MIT license and attribution are preserved.
 
 This repository contains a structured JSON index of Google Fonts, organized by font category and script subset.
 
@@ -135,23 +139,23 @@ You can use these files to:
 All JSON files are available via [jsDelivr](https://www.jsdelivr.com/) CDN:
 
 ```
-https://cdn.jsdelivr.net/gh/hasinhayder/google-fonts/
+https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts/
 ```
 
 ### Examples
 
 ```bash
 # Full font list
-curl https://cdn.jsdelivr.net/gh/hasinhayder/google-fonts/fonts.json
+curl https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts/fonts.json
 
 # Full font list (latest tag)
-curl https://cdn.jsdelivr.net/gh/hasinhayder/google-fonts@latest/fonts.json
+curl https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts@latest/fonts.json
 
 # Fonts in a specific subset and category
-curl https://cdn.jsdelivr.net/gh/hasinhayder/google-fonts/subsets/latin/display/fonts.json
+curl https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts/subsets/latin/display/fonts.json
 
 # Fonts in a specific category and subset
-curl https://cdn.jsdelivr.net/gh/hasinhayder/google-fonts/categories/sans-serif/latin/fonts.json
+curl https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts/categories/sans-serif/latin/fonts.json
 ```
 
 ### Versioned URLs
@@ -159,7 +163,7 @@ curl https://cdn.jsdelivr.net/gh/hasinhayder/google-fonts/categories/sans-serif/
 You can pin to a specific tag or commit for caching:
 
 ```
-https://cdn.jsdelivr.net/gh/hasinhayder/google-fonts@v1.2.0/fonts.json
+https://cdn.jsdelivr.net/gh/shakil0501/Google-Fonts@v1.2.0/fonts.json
 ```
 
 ## Notes
