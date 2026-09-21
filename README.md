@@ -88,7 +88,7 @@ Browser tests use installed Google Chrome by default. CI installs Chrome using P
 
 ## License and credits
 
-Original catalog: **Hasin Hayder**, Copyright © 2026, MIT (see [LICENSE](LICENSE)).
+Original catalog: **Shakil Hossain** And **Hasin Hayder**, Copyright © 2026, MIT (see [LICENSE](LICENSE)).
 
 Font Explorer and enhancements: **Shakil Hossain**, Copyright © 2026, MIT.
 
