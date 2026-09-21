@@ -45,6 +45,7 @@ function showCode(font, style) { $('code-title').textContent = font.family; $('c
 
 function render() {
   observer?.disconnect();
+  $('preview').placeholder = $('subset').value === 'bengali' ? 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' : 'The quick brown fox jumps over the lazy dog';
   const matches = filterFonts(state.fonts, { search: $('search').value, category: $('category').value, subset: $('subset').value, savedOnly: state.savedOnly, favorites: state.favorites });
   const pages = Math.max(1, Math.ceil(matches.length / pageSize));
   state.page = Math.min(state.page, pages);
