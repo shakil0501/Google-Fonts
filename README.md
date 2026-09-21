@@ -2,7 +2,6 @@
 
 Maintained by **Shakil Hossain**.
 
-Based on [Google Fonts Index by Hasin Hayder](https://github.com/hasinhayder/google-fonts). The original MIT license and attribution are preserved.
 
 This repository contains a structured JSON index of Google Fonts, organized by font category and script subset.
 
