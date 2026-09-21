@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Discover your next typeface. Search Google Fonts, preview Bengali and other scripts, save favorites, and copy ready-to-use CSS. By Shakil Hossain.">
+  <meta name="theme-color" content="#f5f4f0">
+  <title>Font Explorer — Shakil Hossain</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a href="#explorer" class="skip-link">Skip to fonts</a>
+  <header class="site-header wrap">
+    <a href="./" class="brand" aria-label="Font Explorer home"><span class="brand-mark">F<span>f</span></span><span>Font Explorer<small>BY SHAKIL HOSSAIN</small></span></a>
+    <nav aria-label="Main navigation"><a href="https://github.com/shakil0501/Google-Fonts" target="_blank" rel="noopener">GitHub ↗</a><button id="theme" class="quiet" aria-pressed="false">Dark mode</button></nav>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div><p class="eyebrow"><span></span> A LITTLE TYPE. A LOT OF POSSIBILITY.</p><h1 id="hero-title">Find your<br>next <em>type.</em></h1><p class="hero-description">The right font changes everything. Explore, experiment,<br class="desktop-break"> and find the one that feels like you.</p><a class="explore-link" href="#explorer">Explore the collection <span>↓</span></a></div>
+      <div class="specimen" aria-hidden="true"><span class="specimen-top">THE ART OF LETTERS <span>01 / ∞</span></span><div class="specimen-letters">Aa<span>অ</span></div><span class="specimen-bottom">Different scripts. Endless expression.<span>✳</span></span></div>
+    </section>
+    <section id="explorer" aria-label="Font explorer">
+      <div class="collection-header"><div class="tabs" role="group" aria-label="Collection"><button id="all-fonts" aria-pressed="true">All fonts <span id="total">…</span></button><button id="saved-fonts" aria-pressed="false">Saved <span id="saved-count">0</span></button></div><span id="updated" class="muted">Loading catalog…</span></div>
+      <div class="controls">
+        <div class="filter-row"><label class="search"><span>Search fonts</span><input id="search" type="search" placeholder="Find a font by name…" autocomplete="off"></label><label>Category<select id="category"><option value="">All categories</option></select></label><label>Language / script<select id="subset"><option value="">All scripts</option></select></label><button id="bengali" class="bengali" aria-pressed="false">অ বাংলা</button></div>
+        <div class="preview-row"><label class="preview-input">Your preview text<input id="preview" type="text" maxlength="200" placeholder="The quick brown fox jumps over the lazy dog"></label><label class="size-label">Size <output id="size-output" for="size">40px</output><input id="size" type="range" min="16" max="88" value="40"></label><label>Weight<select id="weight"><option value="100">100 · Thin</option><option value="200">200 · Extra light</option><option value="300">300 · Light</option><option value="400" selected>400 · Regular</option><option value="500">500 · Medium</option><option value="600">600 · Semibold</option><option value="700">700 · Bold</option><option value="800">800 · Extra bold</option><option value="900">900 · Black</option></select></label><button id="italic" class="italic" aria-pressed="false" aria-label="Italic preview">I</button></div>
+      </div>
+      <div class="results-bar"><p id="results-count" role="status">Preparing your collection…</p><button id="reset" class="text-button">Reset filters ↺</button></div>
+      <p class="hint">Each card uses the closest available weight and style. Font previews load from Google Fonts.</p>
+      <div id="font-grid" class="font-grid" aria-busy="true"></div>
+      <div id="empty" class="empty" hidden><span>Aa?</span><h2>No fonts here yet</h2><p id="empty-message">Try a different search or reset your filters.</p><button id="empty-reset">Show all fonts</button></div>
+      <div id="load-error" class="empty" hidden><h2>We couldn't load the collection.</h2><p>Check your connection, then try again.</p><button id="retry">Try again</button></div>
+      <div class="pagination"><button id="previous" disabled>← Previous</button><span id="page-label">Page 1</span><button id="next" disabled>Next →</button></div>
+    </section>
+  </main>
+  <footer class="wrap"><p>Curated for the curious.<br><strong>Shakil Hossain</strong></p><p>Built on <a href="https://github.com/hasinhayder/google-fonts">Hasin Hayder’s Google Fonts Index</a>.<br>Catalog: <a href="./LICENSE">MIT license</a>. Individual fonts retain their own licenses.</p></footer>
+  <dialog id="code-dialog" aria-labelledby="code-title"><form method="dialog"><button class="dialog-close" aria-label="Close CSS dialog">✕</button></form><p class="eyebrow">MAKE IT YOURS</p><h2 id="code-title">Use this font</h2><p class="muted">Place the @import at the top of your stylesheet.</p><textarea id="code" aria-label="CSS code" readonly spellcheck="false"></textarea><button id="copy-code" class="primary">Copy CSS</button><p class="hint">If copying is unavailable, select the code and copy it manually.</p></dialog>
+  <div id="toast" role="status" class="toast" hidden></div>
+  <noscript><p class="wrap">Enable JavaScript to search and preview fonts. The JSON catalog is also available in the GitHub repository.</p></noscript>
+</body>
+</html>
